@@ -7,12 +7,6 @@
       "reminder": true
     },
     {
-      "id": 2,
-      "text": "Make appointment with Docter",
-      "day": "April 5th on 2:30pm",
-      "reminder": false
-    },
-    {
       "id": 5,
       "text": "Buy milk",
       "day": "April 30th on 2:30pm",
