@@ -2,31 +2,28 @@
   "users": [
     {
       "id": 1,
-      "first_name": "Danish",
-      "last_name": "Ali",
+      "firstName": "Danish",
+      "lastName": "Ali",
       "email": "danish@codendevs.com",
       "password": "danish1234",
       "role": "admin"
+    },
+    {
+      "firstName": "Danish",
+      "lastName": "Ali",
+      "email": "danish@gmail.com",
+      "password": "1234",
+      "role": "user",
+      "id": 2
     }
   ],
   "tasks": [
     {
-      "id": 1,
-      "text": "Buy milk",
-      "day": "April 2nd on 2:30pm",
-      "reminder": true
-    },
-    {
-      "id": 5,
-      "text": "Buy milk",
-      "day": "April 30th on 2:30pm",
-      "reminder": true
-    },
-    {
-      "id": 53541,
+      "userId": 2,
       "text": "Go to Dentist",
       "day": "March 10th at 10:00am",
-      "reminder": true
+      "reminder": true,
+      "id": 1
     }
   ]
 }

@@ -1,4 +1,6 @@
-export default  Role = {
-    "Admin":"admin",
-    "User":"user"
-};
+const  Role = [
+    {"key":"Admin", "value":"admin"},
+    {"key":"User", "value":"user"}
+];
+
+export default Role;

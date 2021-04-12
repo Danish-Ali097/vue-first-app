@@ -1,6 +1,7 @@
 <template>
     <AddTask 
       v-show="showAddTask"
+      :userId="user.id"
       @add-task="addTask"
     />
     <Tasks 
@@ -24,7 +25,8 @@ export default {
     },
     data(){
         return {
-            tasks:[]
+            tasks:[],
+            user:{}
         }
     },
     methods:{
@@ -68,7 +70,7 @@ export default {
     async fetchTasks() {
       const res = await fetch('api/tasks');
       const data = await res.json();
-      return data;
+      return data.filter( task => task.userId === this.user.id );
     },
     async fetchTask(id) {
       const res = await fetch(`api/tasks/${id}`);
@@ -77,10 +79,12 @@ export default {
     }
   },
   async created() {
-    this.tasks = await this.fetchTasks();
-    const user = JSON.parse(sessionStorage.getItem('vue-user'));
-    if(!user){
+    this.user = JSON.parse(sessionStorage.getItem('vue-user'));
+    console.log(this.user);
+    if(!this.user){
       this.$router.push('/autherize');
+    }else{
+      this.tasks = await this.fetchTasks();
     }
   }
 }

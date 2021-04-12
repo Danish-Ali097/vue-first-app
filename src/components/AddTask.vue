@@ -22,6 +22,9 @@
 <script>
 export default {
     name: 'AddTask',
+    props:{
+        userId: Number
+    },
     data() {
         return {
             text: '',
@@ -38,6 +41,7 @@ export default {
                 return
             }
             const newTask = { 
+                userId: this.userId,
                 text: this.text,
                 day: this.day,
                 reminder: this.reminder

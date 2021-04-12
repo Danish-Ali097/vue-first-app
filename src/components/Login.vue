@@ -1,9 +1,6 @@
 <template>
     <form @submit="onSubmit">
         <h1>Login</h1>
-        <div v-show="showMessage" class="alert">
-            {{messageText}}
-        </div>
         <div class="form-group">
             <label for="email">Email</label>
             <input v-model="email" type="email" name="email" placeholder="Enter Email">
@@ -19,10 +16,6 @@
 <script>
 export default {
     name:"Login",
-    props:{
-        showMessage:Boolean,
-        messageText:String
-    },
     data(){
         return {
             email:'',
@@ -41,6 +34,9 @@ export default {
                 password: this.password
             }
             this.$emit('login-user', userCred);
+            
+            this.email = '';
+            this.password = '';
         }
     }
 }
@@ -71,14 +67,5 @@ export default {
         margin: 5px;
         height: 40px;
         padding: 3px 7px;
-    }
-    .alert{
-        width: 100%;
-        background-color: #2979d4a9;
-        border: 2px solid #2979d4;
-        color:#ffff;
-        padding:20px 30px;
-        margin: 5px;
-        border-radius: 3px;
     }
 </style>
