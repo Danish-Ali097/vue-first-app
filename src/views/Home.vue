@@ -78,6 +78,10 @@ export default {
   },
   async created() {
     this.tasks = await this.fetchTasks();
+    const user = JSON.parse(sessionStorage.getItem('vue-user'));
+    if(!user){
+      this.$router.push('/autherize');
+    }
   }
 }
 </script>

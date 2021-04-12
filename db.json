@@ -1,4 +1,14 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "first_name": "Danish",
+      "last_name": "Ali",
+      "email": "danish@codendevs.com",
+      "password": "danish1234",
+      "role": "admin"
+    }
+  ],
   "tasks": [
     {
       "id": 1,

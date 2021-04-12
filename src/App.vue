@@ -1,6 +1,12 @@
 <template>
-  <Header @toggle-add-task="toggleAddTask" title="Task Tracker" :showAddTask="showAddTask" />
-  <router-view :showAddTask="showAddTask"></router-view>
+  <Header 
+   @toggle-add-task="toggleAddTask"
+   @logout-user="logoutUser"
+   title="Task Tracker"
+   :showAddTask="showAddTask"
+   :vueUser="vueUser"
+  />
+  <router-view @addVueUser="addVueUser" :showAddTask="showAddTask"></router-view>
   <Footer/>
 </template>
 
@@ -16,13 +22,29 @@ export default {
   },
   data() {
     return {
-      showAddTask:false
+      showAddTask: false,
+      vueUser: {}
     }
   },
   methods:{
     toggleAddTask(){
       this.showAddTask = !this.showAddTask;
     },
+    addVueUser(obj){
+      this.vueUser = obj;
+    },
+    logoutUser(){
+      sessionStorage.removeItem('vue-user');
+      this.vueUser = {}
+      this.$router.push('/autherize');
+    }
+  },
+  created() {
+    const user = JSON.parse(sessionStorage.getItem('vue-user'));
+    if(user)
+    {
+      this.vueUser = user;
+    }
   }
 }
 </script>
