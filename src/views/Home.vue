@@ -45,7 +45,7 @@ export default {
       this.tasks = [...this.tasks, data];
     },
     async deleteTask(id){
-      if(confirm('Are u sure ?')){
+      if(confirm('Are u sure?')){
         const res = await fetch(`api/tasks/${id}`, {
           method:'DELETE'
         });

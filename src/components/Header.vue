@@ -1,11 +1,13 @@
 <template>
     <header>
         <h1>{{title}}</h1>
-        <Button 
-        v-show="vueUser.role === 'admin'"
-        @btn-click="$emit('toggle-manage-user')"
-        text="Manage users"
-        />
+        <router-link class="btn" v-show="vueUser.role=='admin'" to="/admin">
+            Manage Users
+        </router-link>
+
+        <router-link class="btn" v-show="adminPage" to="/">
+            Home
+        </router-link>
 
         <Button 
         v-show="homePage"
@@ -13,7 +15,7 @@
         :text="showAddTask ? 'Close' : 'Add Task'"
         :color="showAddTask ? 'red' : 'green'"
         />
-        <span v-show="vueUser.id > 0 && homePage" class="greet-user">
+        <span v-show="vueUser.id > 0 && adminHomePage" class="greet-user">
             <p>Hello, {{vueUser.firstName}}</p>
             <Button 
             @btn-click="$emit('logout-user')"
@@ -38,6 +40,20 @@ export default {
     computed: {
         homePage(){
             if(this.$route.path === '/') {
+                return true;
+            }else{
+                return false;
+            }
+        },
+        adminPage(){
+            if(this.$route.path === '/admin') {
+                return true;
+            }else{
+                return false;
+            }
+        },
+        adminHomePage(){
+            if(this.$route.path === '/' || this.$route.path === '/admin') {
                 return true;
             }else{
                 return false;

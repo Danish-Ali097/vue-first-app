@@ -4,14 +4,13 @@
         {{messageText}}
     </div>
     <Login v-show="showLogin" @login-user="Login" />
-    <Signup v-show="!showLogin" @signup-user="Signup" :userRole="role" />
+    <Signup v-show="!showLogin" @signup-user="Signup" />
 </template>
 
 <script>
 import Button from '../components/Button.vue';
 import Login from '../components/Login.vue';
 import Signup from '../components/Signup.vue';
-import Role from '../utility/enums';
 export default {
     name:"Autherization",
     components: {
@@ -24,7 +23,6 @@ export default {
             showMessage:false,
             messageText:'',
             showLogin:true,
-            role:[]
         }
     },
     methods: {
@@ -34,6 +32,11 @@ export default {
                const response = await res.json();
                
                const elem = response.find(x => x.email == obj.email);
+               if(!elem) { 
+                   this.showMessage=true;
+                   this.messageText=`user not exist ${obj.email}`; 
+                   return
+                }
                if(elem.password === obj.password)
                {
                    console.log("autherization success", elem);
@@ -73,9 +76,6 @@ export default {
         toggleForm() {
             this.showLogin = !this.showLogin;
         }
-    },
-    created() {
-        this.role = Role;
     }
 }
 </script>

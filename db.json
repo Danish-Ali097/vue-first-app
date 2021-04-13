@@ -22,14 +22,14 @@
       "userId": 2,
       "text": "Go to Dentist",
       "day": "March 10th at 10:00am",
-      "reminder": true,
+      "reminder": false,
       "id": 1
     },
     {
       "userId": 1,
       "text": "Go to Home",
       "day": "April 12th at 07:30pm",
-      "reminder": true,
+      "reminder": false,
       "id": 2
     }
   ]

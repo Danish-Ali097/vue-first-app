@@ -1,6 +1,6 @@
 <template>
     <form @submit="onSubmit">
-        <h1>Signup</h1>
+        <h1>Add User</h1>
         <div class="form-group">
             <label for="firstname">First Name</label>
             <input v-model="firstName" type="text" name="firstname" placeholder="Enter your First name">
@@ -17,23 +17,37 @@
             <label for="password">Password</label>
             <input v-model="password" type="password" name="password" placeholder="Enter your password">
         </div>
-        <input class="btn btn-block" type="submit" value="Signup">
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select v-model="role" name="role">
+                <option
+                 :key="role"
+                 v-for="role in userRole"
+                 :value="role.value"
+                 :selected="role.value == 'user' ? true : false" 
+                >{{role.key}}</option>
+            </select>
+        </div>
+        <input class="btn btn-block" type="submit" value="Add User">
     </form>
 </template>
 
 <script>
+
+import Role from '../utility/enums';
 export default {
-    name:'Signup',
+    name:'AddUser',
     data() {
-        return{
+        return {
             firstName:'',
             lastName:'',
             email:'',
             password:'',
-            role:'user'
+            role:'user',
+            userRole:Array
         }
     },
-    methods: {
+    methods:{
         onSubmit(e){
             e.preventDefault();
             if(this.email === '' || this.password === '') {
@@ -47,7 +61,7 @@ export default {
                 password: this.password,
                 role: this.role
             }
-            this.$emit('signup-user', userCred);
+            this.$emit('add-user', userCred);
 
             this.firstName = '';
             this.lastName = '';
@@ -55,6 +69,9 @@ export default {
             this.password = '';
             this.role = 'user';
         }
+    },
+    created(){
+        this.userRole = Role
     }
 }
 </script>

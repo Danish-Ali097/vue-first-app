@@ -79,4 +79,7 @@ export default {
     display: block;
     width: 100%;
   }
+  a.btn{
+    text-decoration: none;
+  }
 </style>
